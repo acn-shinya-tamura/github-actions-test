@@ -19,8 +19,11 @@ jobs:
             
             - name: Build and Push Docker Image
               run: |
-                docker build -t asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest .
-                docker push asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest
+                docker buildx create --use
+                docker buildx build \
+                --cache-from=type=registry,ref=asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest \
+                --cache-to=type=registry,ref=asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest,mode=max \
+                --push -t asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest .
             
             - name: Run Docker Conteiner and Execute Tests
               run: |
