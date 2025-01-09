@@ -22,6 +22,6 @@ jobs:
                 docker build -t asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest
                 docker push asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest
             
-            - neme: Run Docker Conteiner and Execute Tests
+            - name: Run Docker Conteiner and Execute Tests
               run: |
                 docker run --rm asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest
