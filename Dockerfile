@@ -2,19 +2,11 @@ FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y \
-    curl \
-    python3 \
-    python3-pip \
-    && apt-get clean
-
-COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN apt-get update && apt-get install -y && apt-get clean
 
 WORKDIR /usr/src/app
 
 COPY test-script.sh .
-COPY sample_app/ ./sample_app/
 
 RUN chmod +x test-script.sh
 
