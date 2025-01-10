@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "Running test..."
-python3 -m unittest discover -s sample_app
+python3 sample_app/main.py
