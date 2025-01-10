@@ -29,3 +29,4 @@ jobs:
             - name: Run Docker Conteiner and Execute Tests
               run: |
                 docker run --rm asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest
+                docker container prune -force
