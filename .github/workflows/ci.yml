@@ -16,15 +16,14 @@ jobs:
               env:
                 GCP_ARTIFACT_REGISTRY_TOKEN: ${{ secrets.GCP_ARTIFACT_REGISTRY_TOKEN }}
               run: echo "${{ secrets.GCP_ARTIFACT_REGISTRY_TOKEN }} | docker login -u _json_key --password-stdin https://asia-northeast1-docker.pkg.dev"
-            
-            - name: Build and Push Docker Image
-              run: |
-                docker buildx create --use
-                docker buildx build \
-                --platform linux/amd64 \
-                --cache-from=type=registry,ref=asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest \
-                --cache-to=type=registry,ref=asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest,mode=max \
-                --push -t asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest .
+
+            # - name: Build and Push Docker Image
+            #   run: |
+            #     docker buildx create --use
+            #     docker buildx build \
+            #     --cache-from=type=registry,ref=asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest \
+            #     --cache-to=type=registry,ref=asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest,mode=max \
+            #     --push -t asia-northeast1-docker.pkg.dev/peerless-fabric-445801-p9/self-hosted-runner/test-app:latest .
             
             - name: Run Docker Conteiner and Execute Tests
               run: |
